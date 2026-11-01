@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>mdview</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<aside id="sidebar">
+  <div class="side-head">
+    <button id="tab-history" class="tab active" data-i18n="ui.history"></button>
+    <button id="tab-toc" class="tab" data-i18n="ui.toc"></button>
+    <button id="clear" class="ghost" data-i18n="ui.clear" data-i18n-title="ui.clearTitle"></button>
+  </div>
+  <ul id="history"></ul>
+  <ul id="toc" hidden></ul>
+</aside>
+
+<div id="main">
+  <header id="bar">
+    <button id="toggle" class="ghost" data-i18n-title="ui.toggleSidebar">☰</button>
+    <button id="open" data-i18n="ui.open" data-i18n-title="ui.openTitle"></button>
+    <span id="path"></span>
+    <button id="theme" class="ghost"></button>
+  </header>
+
+  <div id="find" hidden>
+    <input id="q" type="search" data-i18n-placeholder="ui.findPlaceholder" data-i18n-aria="ui.findLabel" autocomplete="off" spellcheck="false">
+    <span id="count"></span>
+    <button id="prev" class="ghost" data-i18n-title="ui.prev">↑</button>
+    <button id="next" class="ghost" data-i18n-title="ui.next">↓</button>
+    <button id="fclose" class="ghost" data-i18n-title="ui.close">×</button>
+  </div>
+
+  <main id="content">
+    <article id="doc" class="md">
+      <div class="empty">
+        <p data-i18n="ui.emptyLine1"></p>
+        <p data-i18n="ui.emptyLine2"></p>
+      </div>
+    </article>
+  </main>
+</div>
+
+<div id="toast" role="status" hidden></div>
+
+<dialog id="about" aria-labelledby="about-name">
+  <div class="about-body">
+    <h2 id="about-name">mdview</h2>
+    <p id="about-version" class="about-meta"></p>
+    <p id="about-author" class="about-meta" hidden></p>
+    <p id="about-company" class="about-meta" hidden></p>
+    <p class="about-meta"><a id="about-site" href="#" hidden></a></p>
+    <p data-i18n="about.description"></p>
+    <p class="about-label" data-i18n="about.data"></p>
+    <code id="about-dir"></code>
+    <p class="about-meta" data-i18n="about.built"></p>
+    <p class="about-meta" id="about-platform"></p>
+    <div class="about-actions">
+      <button id="about-close" data-i18n="about.close" autofocus></button>
+    </div>
+  </div>
+</dialog>
+
+<script src="app.js"></script>
+</body>
+</html>

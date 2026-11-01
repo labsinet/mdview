@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=mdview
+Comment=Lightweight Markdown viewer
+Exec=/usr/local/bin/mdview %f
+Icon=text-markdown
+Terminal=false
+Categories=Utility;TextTools;
+MimeType=text/markdown;text/x-markdown;

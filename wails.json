@@ -1,0 +1,31 @@
+{
+  "$schema": "https://wails.io/schemas/config.v2.json",
+  "name": "mdview",
+  "outputfilename": "mdview",
+  "frontend:dir": "frontend",
+  "info": {
+    "companyName": "",
+    "productName": "mdview",
+    "productVersion": "0.3.0",
+    "comments": "Lightweight Markdown viewer",
+    "copyright": "© 2026 Ihor Kapatsila"
+  },
+  "fileAssociations": [
+    {
+      "ext": "md",
+      "name": "Markdown",
+      "description": "Markdown Document",
+      "role": "Viewer"
+    },
+    {
+      "ext": "markdown",
+      "name": "Markdown",
+      "description": "Markdown Document",
+      "role": "Viewer"
+    }
+  ],
+  "author": {
+    "name": "Ihor Kapatsila",
+    "email": "https://career.softserveinc.com/en-us/courses"
+  }
+}

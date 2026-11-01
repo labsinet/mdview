@@ -1,0 +1,139 @@
+:root {
+  --bg: #f3f5f8;
+  --page: #ffffff;
+  --ink: #1c2230;
+  --muted: #6b7587;
+  --line: #dde2ea;
+  --accent: #2b5f95;
+  --code-bg: #eef1f6;
+  --hover: #e6ebf3;
+  --ui: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --read: Charter, "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  --mono: ui-monospace, "Cascadia Code", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #12151a; --page: #1a1e25; --ink: #dfe4ec; --muted: #8b95a7;
+    --line: #2b313b; --accent: #82b2e6; --code-bg: #232933; --hover: #242b36;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #12151a; --page: #1a1e25; --ink: #dfe4ec; --muted: #8b95a7;
+  --line: #2b313b; --accent: #82b2e6; --code-bg: #232933; --hover: #242b36;
+}
+:root { color-scheme: light dark; }
+:root[data-theme="light"] { color-scheme: light; }
+:root[data-theme="dark"] { color-scheme: dark; }
+* { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; }
+body { display: flex; background: var(--bg); color: var(--ink); font: 14px/1.4 var(--ui); }
+
+#sidebar { width: 260px; flex: none; border-right: 1px solid var(--line); display: flex; flex-direction: column; background: var(--page); }
+#sidebar.hidden { display: none; }
+.side-head { display: flex; justify-content: space-between; align-items: center; padding: 10px 12px; font-weight: 600; border-bottom: 1px solid var(--line); }
+#history { list-style: none; margin: 0; padding: 4px; overflow: auto; flex: 1; }
+#history li { display: flex; align-items: center; border-radius: 6px; }
+#history li:hover { background: var(--hover); }
+#history li.active { background: var(--hover); box-shadow: inset 3px 0 0 var(--accent); }
+#history li.missing .name { text-decoration: line-through; color: var(--muted); }
+#history .item { flex: 1; min-width: 0; padding: 6px 8px; cursor: pointer; }
+#history .name { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+#history .dir { display: block; font-size: 11px; color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; direction: rtl; text-align: left; }
+#history .x { visibility: hidden; margin-right: 4px; }
+#history li:hover .x { visibility: visible; }
+.hist-empty { padding: 12px; color: var(--muted); }
+
+#main { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+#bar { display: flex; align-items: center; gap: 8px; padding: 8px 12px; border-bottom: 1px solid var(--line); background: var(--page); }
+#path { color: var(--muted); font-size: 12px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; direction: rtl; text-align: left; flex: 1; }
+
+button { font: inherit; color: var(--ink); background: var(--page); border: 1px solid var(--line); border-radius: 6px; padding: 4px 10px; cursor: pointer; }
+button:hover { background: var(--hover); }
+button.ghost { border-color: transparent; background: transparent; padding: 3px 8px; color: var(--muted); }
+button.ghost:hover { background: var(--hover); color: var(--ink); }
+button:focus-visible, #history .item:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+
+#content { flex: 1; overflow: auto; padding: 24px 16px 64px; }
+.md { max-width: 760px; margin: 0 auto; background: var(--page); padding: 36px 48px; border: 1px solid var(--line); border-radius: 8px;
+      font: 17px/1.7 var(--read); overflow-wrap: break-word; }
+.md .empty, .md .error { font: 14px var(--ui); color: var(--muted); }
+.md .error { color: #c0392b; }
+.md h1, .md h2, .md h3, .md h4 { font-family: var(--ui); line-height: 1.25; margin: 1.6em 0 .5em; }
+.md h1 { font-size: 1.9em; margin-top: 0; padding-bottom: .3em; border-bottom: 1px solid var(--line); }
+.md h2 { font-size: 1.5em; padding-bottom: .25em; border-bottom: 1px solid var(--line); }
+.md h3 { font-size: 1.2em; }
+.md p, .md ul, .md ol, .md pre, .md table, .md blockquote { margin: 0 0 1em; }
+.md a { color: var(--accent); }
+.md img { max-width: 100%; height: auto; }
+.md code { font: .85em var(--mono); background: var(--code-bg); padding: .15em .35em; border-radius: 4px; }
+.md pre { background: var(--code-bg); padding: 14px 16px; border-radius: 6px; overflow: auto; line-height: 1.5; }
+.md pre code { background: none; padding: 0; font-size: .85em; }
+.md blockquote { margin-left: 0; padding: 0 1em; color: var(--muted); border-left: 3px solid var(--line); }
+.md table { border-collapse: collapse; display: block; overflow: auto; font: 15px/1.5 var(--ui); }
+.md th, .md td { border: 1px solid var(--line); padding: 6px 12px; }
+.md th { background: var(--code-bg); }
+.md hr { border: 0; border-top: 1px solid var(--line); margin: 2em 0; }
+.md li > input[type=checkbox] { margin-right: .5em; }
+@media (max-width: 700px) { .md { padding: 20px; } #sidebar { position: fixed; z-index: 2; inset: 0 auto 0 0; } }
+
+/* ---- вкладки бічної панелі ---- */
+[hidden] { display: none !important; }
+.side-head { gap: 4px; justify-content: flex-start; }
+.side-head #clear { margin-left: auto; font-size: 12px; }
+.tab { border: 0; background: transparent; padding: 4px 8px; border-radius: 6px; color: var(--muted); font-weight: 600; }
+.tab:hover { background: var(--hover); }
+.tab.active { color: var(--ink); background: var(--hover); }
+
+/* ---- зміст ---- */
+#toc { list-style: none; margin: 0; padding: 4px; overflow: auto; flex: 1; }
+#toc li { border-radius: 6px; }
+#toc li:hover { background: var(--hover); }
+#toc li.active { background: var(--hover); box-shadow: inset 3px 0 0 var(--accent); }
+#toc .toc-item { padding: 5px 8px; cursor: pointer; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+#toc .toc-item:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+.md :is(h1, h2, h3, h4) { scroll-margin-top: 8px; }
+
+/* ---- пошук ---- */
+#main { position: relative; }
+#find { position: absolute; z-index: 3; top: 48px; right: 24px; display: flex; align-items: center; gap: 4px;
+        padding: 6px 8px; background: var(--page); border: 1px solid var(--line); border-radius: 8px;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, .18); }
+#q { font: inherit; width: 220px; color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 6px; padding: 4px 8px; }
+#q:focus-visible { outline: 2px solid var(--accent); outline-offset: 0; }
+#count { min-width: 64px; text-align: center; color: var(--muted); font-size: 12px; white-space: nowrap; }
+mark.hit { background: #ffe08a; color: #1c2230; border-radius: 2px; }
+mark.hit.cur { background: #ff9f43; outline: 2px solid #ff9f43; }
+
+/* ---- підсвічування коду (CSS самого chroma додається з Go) ---- */
+.md pre.chroma { background: var(--code-bg); }
+
+/* ---- drag-and-drop ---- */
+body { --wails-drop-target: drop; }
+body.wails-drop-target-active::after {
+  content: attr(data-drop);
+  position: fixed; inset: 12px; z-index: 10; display: grid; place-items: center;
+  border: 2px dashed var(--accent); border-radius: 12px; color: var(--accent);
+  font: 600 18px var(--ui); background: rgba(128, 150, 180, .18); pointer-events: none;
+}
+
+/* ---- Про програму ---- */
+#about { padding: 0; width: min(420px, calc(100% - 32px)); color: var(--ink); background: var(--page);
+         border: 1px solid var(--line); border-radius: 10px; }
+#about::backdrop { background: rgba(0, 0, 0, .45); }
+.about-body { padding: 24px 28px 20px; font-size: 14px; line-height: 1.5; }
+.about-body h2 { margin: 0; font: 600 24px/1.2 var(--ui); }
+.about-body p { margin: 10px 0 0; }
+.about-body .about-meta { color: var(--muted); font-size: 12px; margin-top: 6px; }
+.about-body .about-label { margin-top: 18px; margin-bottom: 4px; }
+.about-body code { display: block; font: 12px/1.5 var(--mono); background: var(--code-bg); padding: 8px 10px;
+                   border-radius: 6px; overflow-wrap: anywhere; user-select: text; }
+.about-actions { margin-top: 20px; display: flex; justify-content: flex-end; }
+
+/* ---- тема, сповіщення ---- */
+#theme { min-width: 32px; font-size: 15px; }
+#toast { position: fixed; z-index: 20; left: 50%; bottom: 20px; transform: translateX(-50%);
+         max-width: min(560px, 90vw); padding: 8px 14px; border-radius: 8px; font-size: 13px;
+         background: var(--ink); color: var(--page); overflow-wrap: anywhere; }
+
+.about-body .about-meta + .about-meta { margin-top: 2px; }
+.about-body a { color: var(--accent); }
